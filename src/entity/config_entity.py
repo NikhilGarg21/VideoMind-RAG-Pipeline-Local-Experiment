@@ -1,0 +1,111 @@
+import os
+from dataclasses import dataclass
+from src.constants import *
+
+
+@dataclass
+class VideoPipelineConfig:
+    pipeline_name: str = PIPELINE_NAME
+    artifact_dir: str = ARTIFACT_DIR
+
+
+video_pipeline_config = VideoPipelineConfig()
+
+
+@dataclass
+class AudioIngestionConfig:
+    audio_ingestion_dir: str = os.path.join(
+        video_pipeline_config.artifact_dir,
+        AUDIO_INGESTION_DIR,
+    )
+
+    audio_path: str = os.path.join(
+        audio_ingestion_dir,
+        AUDIO_DIR,
+        AUDIO_FILE_NAME,
+    )
+
+    audio_chunks_dir: str = os.path.join(
+        audio_ingestion_dir,
+        AUDIO_CHUNKS_DIR,
+    )
+
+    video_metadata_file_path: str = os.path.join(
+        audio_ingestion_dir,
+        VIDEO_METADATA_FILE_NAME,
+    )
+    chunk_duration: int = CHUNKS_DURATION
+
+
+@dataclass
+class AudioTranscriptionConfig:
+    audio_transcription_dir: str = os.path.join(
+        video_pipeline_config.artifact_dir,
+        AUDIO_TRANSCRIPTION_DIR,
+    )
+    transcript_file_path: str = os.path.join(
+        audio_transcription_dir,
+        TRANSCRIPT_FILE_NAME,
+    )
+    model_name: str = WHISPER_MODEL_NAME
+    max_retries: int = TRANSCRIPTION_MAX_RETRIES
+    retry_delay: float = TRANSCRIPTION_RETRY_DELAY
+
+@dataclass
+class TextProcessingConfig:
+    text_processing_dir: str = os.path.join(
+        video_pipeline_config.artifact_dir,
+        TEXT_PROCESSING_DIR,
+    )
+    text_chunks_dir: str = os.path.join(
+        text_processing_dir,
+        TEXT_CHUNKS_DIR,
+    )
+    chunk_size: int = CHUNK_SIZE
+    chunk_overlap: int = CHUNK_OVERLAP
+
+
+@dataclass
+class TimestampConfig:
+    timestamp_dir: str = os.path.join(
+        video_pipeline_config.artifact_dir,
+        TIMESTAMP_DIR,
+    )
+    timestamp_file_path: str = os.path.join(
+        timestamp_dir,
+        TIMESTAMP_FILE_NAME,
+    )
+    max_chars_per_batch: int = MAX_CHARS_PER_TIMESTAMP_BATCH
+    max_retries: int = MAX_LLM_RETRIES
+    retry_delay: float = LLM_RETRY_DELAY
+
+@dataclass
+class SummaryConfig:
+    summary_dir: str = os.path.join(
+        video_pipeline_config.artifact_dir,
+        SUMMARY_DIR,
+    )
+    summary_file_path: str = os.path.join(
+        summary_dir,
+        SUMMARY_FILE_NAME,
+    )
+    max_chars_per_batch: int = MAX_CHARS_PER_SUMMARY_BATCH
+    max_retries: int = MAX_LLM_RETRIES
+    retry_delay: float = LLM_RETRY_DELAY
+
+@dataclass
+class EmbeddingConfig:
+    embedding_dir: str = os.path.join(
+        video_pipeline_config.artifact_dir,
+        EMBEDDING_DIR,
+    )
+    index_file_path: str = os.path.join(
+        embedding_dir,
+        EMBEDDING_INDEX_FILE_NAME,
+    )
+    metadata_file_path: str = os.path.join(
+        embedding_dir,
+        EMBEDDING_METADATA_FILE_NAME,
+    )
+    model_name: str = EMBEDDING_MODEL_NAME
+    top_k: int = QA_TOP_K

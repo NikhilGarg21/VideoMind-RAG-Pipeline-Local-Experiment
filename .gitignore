@@ -1,0 +1,52 @@
+# Virtual Environment
+venv/
+env/
+.venv/
+venv311/
+.venv311/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+logs/
+*.log
+
+# Artifacts
+artifact/
+
+# DVC cache
+.dvc/cache/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model files
+*.pt
+*.pth
+*.bin
+*.onnx
+
+cookies.txt
