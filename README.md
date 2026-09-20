@@ -131,5 +131,3 @@ Every prompt the pipeline sends to an LLM lives in `src/prompts.py`, nowhere els
 - `artifact/` and `logs/` grow with every run; nothing here prunes old runs automatically
 - Running on free-tier APIs means free-tier rate limits apply
 - YouTube extraction can be blocked from cloud hosting environments — this repo assumes local/trusted-IP execution and doesn't include the cookie/PO-token workarounds the live API version needs
-
-https://github.com/NikhilGarg21/VideoMind-RAG-Pipeline-Local-Experiment-.git
